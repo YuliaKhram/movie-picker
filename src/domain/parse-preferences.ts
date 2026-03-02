@@ -53,10 +53,12 @@ export function parsePreferences(input: string): Preference {
     preference.genre = foundGenre === "science fiction" ? "sci-fi" : foundGenre;
   }
 
-  // Extract actor ("with <Name>") - supports multi-word names with apostrophes
-  // Matches: "with Emma Stone", "with Dwayne The Rock Johnson", etc.
+  // Extract actor ("with <Name>") - supports multi-word names and avoids
+  // capturing trailing filler words like "please", "in it", "starring", etc.
+  // Examples matched correctly: "with Emma Stone", "with Dwayne The Rock Johnson"
+  // Avoids: "with Tom Hardy in it" -> captures "Tom Hardy"
   const actorMatch = input.match(
-    /\bwith\s+([A-Za-z\s'-]+?)(?:\s+that|\s+and|$)/i,
+    /\bwith\s+([A-Za-z][A-Za-z'`.-]*(?:\s+[A-Za-z][A-Za-z'`.-]*){0,6}?)(?:(?=\s+(?:that|and|in(?:\s+it)?|please|thanks?|who|starring|featuring|is|as|,|\.|$))|$)/i,
   );
   if (actorMatch) {
     // Normalize to Title Case
