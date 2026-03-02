@@ -127,13 +127,13 @@ import type { Movie } from "./types";
   },
   {
     id: "13",
-    title: "The Grand Budapest Hotel",
-    year: 2014,
+    title: "Warrior",
+    year: 2011,
     overview:
-      "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy under an exceptional concierge.",
-    posterUrl: "https://via.placeholder.com/300x450?text=Grand+Budapest",
-    genres: ["comedy", "crime", "drama"],
-    cast: ["Ralph Fiennes", "Tony Revolori", "F. Murray Abraham"],
+      "Two estranged brothers face off in a mixed martial arts tournament.",
+    posterUrl: "https://via.placeholder.com/300x450?text=Warrior",
+    genres: ["action", "drama", "sport"],
+    cast: ["Tom Hardy", "Joel Edgerton", "Nick Nolte"],
   },
   {
     id: "14",
@@ -194,16 +194,6 @@ import type { Movie } from "./types";
     posterUrl: "https://via.placeholder.com/300x450?text=Kells",
     genres: ["animation", "adventure", "fantasy"],
     cast: ["Evan McGuire", "Brendan Gleeson"],
-  },
-  {
-    id: "20",
-    title: "Warrior",
-    year: 2011,
-    overview:
-      "Two estranged brothers face off in a mixed martial arts tournament.",
-    posterUrl: "https://via.placeholder.com/300x450?text=Warrior",
-    genres: ["action", "drama", "sport"],
-    cast: ["Tom Hardy", "Joel Edgerton", "Nick Nolte"],
   },
   {
     id: "21",

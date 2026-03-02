@@ -43,7 +43,9 @@ export class ErrorBoundary extends React.Component<Props, State> {
             }}
           >
             <h1>Something went wrong</h1>
-            <p>{this.state.error?.message}</p>
+            <pre style={{ whiteSpace: "pre-wrap", textAlign: "left", maxWidth: "60ch", margin: "1rem auto" }}>
+              {this.state.error?.message}
+            </pre>
           </div>
         )
       );
