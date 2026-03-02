@@ -20,6 +20,10 @@ const MOOD_KEYWORDS = [
   "exciting",
 ];
 
+function escapeForRegex(input: string) {
+  return input.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
+}
+
 /**
  * Parse user input string to extract movie preferences.
  *
@@ -39,8 +43,11 @@ export function parsePreferences(input: string): Preference {
   const lowerInput = input.toLowerCase();
   const preference: Preference = {};
 
-  // Extract genre
-  const foundGenre = GENRE_KEYWORDS.find((genre) => lowerInput.includes(genre));
+  // Extract genre using word-boundary matching to avoid substring false-positives
+  const foundGenre = GENRE_KEYWORDS.find((genre) => {
+    const pattern = new RegExp(`\\b${escapeForRegex(genre)}\\b`, "i");
+    return pattern.test(input);
+  });
   if (foundGenre) {
     // Normalize "science fiction" to "sci-fi"
     preference.genre = foundGenre === "science fiction" ? "sci-fi" : foundGenre;
@@ -61,8 +68,11 @@ export function parsePreferences(input: string): Preference {
     preference.actor = actorName;
   }
 
-  // Extract mood
-  const foundMood = MOOD_KEYWORDS.find((mood) => lowerInput.includes(mood));
+  // Extract mood using whole-word matching to avoid accidental matches
+  const foundMood = MOOD_KEYWORDS.find((mood) => {
+    const pattern = new RegExp(`\\b${escapeForRegex(mood)}\\b`, "i");
+    return pattern.test(input);
+  });
   if (foundMood) {
     preference.mood = foundMood;
   }
