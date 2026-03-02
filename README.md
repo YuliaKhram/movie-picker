@@ -12,7 +12,8 @@ A web application to discover and pick your next favorite movie.
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20.9+ (recommended 20.17+)
+  - Next.js 16 requires Node 20+
 - npm or yarn
 
 ### Installation
